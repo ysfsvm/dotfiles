@@ -21,7 +21,7 @@ function zsh_gitstatus {
 local ZSH_USER_COLOR="084"
 local ZSH_CENTER_COLOR="085"
 local ZSH_HOSTNAME_COLOR="086"
-local ZSH_PREFIX=""s
+local ZSH_PREFIX=""
 
 if [[ -n "$SSH_CONNECTION" ]]; then
 	# display the source address if connected via ssh
