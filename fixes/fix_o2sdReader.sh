@@ -4,6 +4,13 @@
 # very simple fix for O2 Micro, Inc. SD/MMC Card Reader Controller
 # gh: ysfsvm
 
+# One time only fix
+# sudo rmmod sdhci_pci sdhci_acpi sdhci
+# sudo modprobe sdhci debug_quirks2="0x80000000"
+# sudo modprobe sdhci_pci
+#
+# source: https://www.linuxquestions.org/questions/linux-laptop-and-netbook-25/sd-card-reader-o2-micro-not-working-4175663053/
+
 RED='\033[1;31m'
 GREEN='\033[1;92m'
 CYAN='\033[1;36m'
