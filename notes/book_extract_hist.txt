@@ -1,0 +1,20 @@
+  384  dpkg -x 3DTytMatematikSoruBankasi.deb /tmp/out
+  390  sudo npm install -g asar
+  392  npx asar extract app.asar hehe
+  410  sudo npm install -g js-buetify
+  414  js-beautify main.832b211c.chunk.js >> main_hehe.js
+
+  ## export json with vscode
+
+  421  sudo npm install json-format-cli -g
+  422  json-format za.json
+  446  sudo pacman -S jq
+  467  jq .ebook_pages raw_ebook_pages.json >> pages.json
+  498  jq ".[].path" pages.json >> names.txt
+  502  nl -nrz -w3 names.txt >> nam.txt
+  626  mmv -v "*.*" "#1"
+  640  chmod +x nam.sh
+  641  ./nam.sh
+  642  ls
+  651  rm *_thumbnail
+  652  img2pdf --output 3d_tyt_matematik.pdf $(ls *.png|sort -n)
