@@ -127,6 +127,6 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
       && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
       && ua-drop-caches \
-      && yay -Syyu --noconfirm' \
-      && flatpak update -y
+      && yay -Syyu --noconfirm \
+      && flatpak update -y'
 
