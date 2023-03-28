@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/node_modules/.bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/Desktop/scripts:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
