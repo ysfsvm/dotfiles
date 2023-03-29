@@ -1,5 +1,11 @@
 #!/bin/python3
 
+#----------------------------------------------------------------------------
+# Created By  : github/ysfsvm
+# Created Date: 29.03.2023
+# license = MIT
+#----------------------------------------------------------------------------
+
 try:
     import requests
     from datetime import datetime
