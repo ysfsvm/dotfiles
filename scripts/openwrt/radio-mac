@@ -1,0 +1,39 @@
+#!/bin/sh /etc/rc.common
+
+# main script from https://github.com/janost/openwrt-wan-mac
+#
+# Copy radio-mac to /etc/init.d/
+# Make sure the file is executable (chmod +x /etc/init.d/radio-mac)
+# Modify the START line in the file if you'd like to customize the init order (optional)
+# Enable the service so it will randomize the MAC address on every boot (/etc/init.d/radio-mac enable)
+# Restart your router or start the service manually (/etc/init.d/radio-mac start)
+
+START=17
+
+start() {
+  OLDMAC0=$(uci get wireless.radio0.macaddr)
+  logger "[RADIO0-MAC] Old RADIO0 MAC address is ${OLDMAC0}."
+  NEWMAC0=$(printf "%02x" $(( $(hexdump -n1 -e'/1 "0x%02x"' /dev/urandom) & ~1 | 2)) && hexdump -n5 -e'/1 ":%02x"' /dev/urandom)
+  logger "[RADIO0-MAC] Applying new random MAC address to RADIO0 (${NEWMAC0})..."
+  uci set wireless.radio0.macaddr=${NEWMAC0}
+  
+  OLDMAC1=$(uci get wireless.radio1.macaddr)
+  logger "[RADIO1-MAC] Old RADIO1 MAC address is ${OLDMAC1}."
+  NEWMAC1=$(printf "%02x" $(( $(hexdump -n1 -e'/1 "0x%02x"' /dev/urandom) & ~1 | 2)) && hexdump -n5 -e'/1 ":%02x"' /dev/urandom)
+  logger "[RADIO1-MAC] Applying new random MAC address to RADIO1 (${NEWMAC1})..."
+  uci set wireless.radio1.macaddr=${NEWMAC1}
+  
+  OLDdefMAC0=$(uci get wireless.default_radio0.macaddr)
+  logger "[DEFAULT_RADIO0-MAC] Old DEFAULT_RADIO0 MAC address is ${OLDdefMAC0}."
+  NEWdefMAC0=$(printf "%02x" $(( $(hexdump -n1 -e'/1 "0x%02x"' /dev/urandom) & ~1 | 2)) && hexdump -n5 -e'/1 ":%02x"' /dev/urandom)
+  logger "[DEFAULT_RADIO0-MAC] Applying new random MAC address to DEFAULT_RADIO0 (${NEWdefMAC0})..."
+  uci set wireless.default_radio0.macaddr=${NEWdefMAC0}
+  
+  OLDdefMAC1=$(uci get wireless.default_radio1.macaddr)
+  logger "[DEFAULT_RADIO1-MAC] Old DEFAULT_RADIO1 MAC address is ${OLDdefMAC1}."
+  NEWdefMAC1=$(printf "%02x" $(( $(hexdump -n1 -e'/1 "0x%02x"' /dev/urandom) & ~1 | 2)) && hexdump -n5 -e'/1 ":%02x"' /dev/urandom)
+  logger "[DEFAULT_RADIO1-MAC] Applying new random MAC address to DEFAULT_RADIO1 (${NEWdefMAC1})..."
+  uci set wireless.default_radio1.macaddr=${NEWdefMAC1}
+  
+  uci commit network
+}
