@@ -24,20 +24,22 @@ local ZSH_HOSTNAME_COLOR="086"
 local ZSH_PREFIX=""
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-	# display the source address if connected via ssh
-	ZSH_PREFIX="%{$fg[yellow]%}[$(echo $SSH_CONNECTION | awk '{print $1}')]%{$reset_color%} "
-	# use orange color to highlight a remote connection
-	ZSH_USER_COLOR="166" #orange
+        # display the source address if connected via ssh
+        ZSH_PREFIX="%{$FG[189]%}[$(echo $SSH_CONNECTION | awk '{print $1}')]%{$reset_color%} "
+        # use orange color to highlight a remote connection
+        ZSH_USER_COLOR="166"
+        ZSH_CENTER_COLOR="172"
+        ZSH_HOSTNAME_COLOR="184"
 elif [[ -r /.dockerenv ]]; then
-	# also prefix prompt inside a docker contrainer
-	ZSH_PREFIX="%{$fg[yellow]%}[docker]%{$reset_color%} "
+        # also prefix prompt inside a docker contrainer
+        ZSH_PREFIX="%{$fg[yellow]%}[docker]%{$reset_color%} "
 fi
 
 if [[ $UID = 0 ]]; then
 	# always use red & pink for root sessions, even in ssh
-	ZSH_USER_COLOR="196" # red
-	ZSH_CENTER_COLOR="198" # pink
-	ZSH_HOSTNAME_COLOR="205" # pink
+	ZSH_USER_COLOR="196"
+	ZSH_CENTER_COLOR="198"
+	ZSH_HOSTNAME_COLOR="205"
 fi
 
 # main prompt

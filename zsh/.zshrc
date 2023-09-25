@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/Desktop/scripts:$PATH
+# export PATH=$HOME/.local/bin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/Desktop/scripts:$HOME/node_modules/.bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -75,24 +75,14 @@ plugins=(git zsh-autosuggestions sudo colored-man-pages zsh-syntax-highlighting)
 # zsh-syntax-hightlighting & colors
 
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-ZSH_HIGHLIGHT_STYLES[default]=none
-ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=green
-ZSH_HIGHLIGHT_STYLES[alias]=none
-ZSH_HIGHLIGHT_STYLES[builtin]=none
-ZSH_HIGHLIGHT_STYLES[function]=none
-ZSH_HIGHLIGHT_STYLES[command]=none
+source $ZSH/custom/themes/zsh-syntax-highlighting/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PYENV_ROOT="$HOME/.pyenv"
-export QT_QPA_PLATFORM=wayland
-export QT_STYLE_OVERRIDE=qt6ct
-export ANKI_WAYLAND=1
-
+# export QT_QPA_PLATFORM=wayland
+# export QT_STYLE_OVERRIDE=qt6ct
 # export MANPATH="/usr/local/man:$MANPATH"	
 
 # You may need to manually set your language environment
@@ -116,17 +106,16 @@ export ANKI_WAYLAND=1
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
-# https://github.com/westandskif/rate-mirrors
-alias ua-drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
-alias ua-update-all='export TMPFILE="$(mktemp)"; \
-    sudo true; \
-    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
-      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
-      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
-      && ua-drop-caches \
-      && yay -Syyu --noconfirm \
-      && flatpak update -y'
+# its for arch based distros / https://github.com/westandskif/rate-mirrors
+# alias ua-drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+# alias ua-update-all='export TMPFILE="$(mktemp)"; \
+#     sudo true; \
+#     rate-mirrors --save=$TMPFILE arch \
+#       && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+#       && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+#       && ua-drop-caches \
+#       && sudo pacman -Syu --noconfirm \
+#       && yay -Syyu --noconfirm \
+#       && flatpak update -y'
 
